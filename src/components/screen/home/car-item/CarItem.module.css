@@ -1,0 +1,61 @@
+.item {
+  width: 280px;
+  background: #1f1f1f;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+  position: relative; /* важно для абсолютных иконок */
+}
+
+.big {
+  width: 500px;
+}
+
+.image {
+  height: 180px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.big .image {
+  height: 300px;
+}
+
+.info {
+  padding: 16px;
+  text-align: center;
+}
+
+.info p {
+  margin: 12px 0;
+  font-size: 1.1rem;
+}
+
+.actions {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  display: flex;
+ 
+  z-index: 2;
+}
+.iconButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 6px;
+  color: white;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+

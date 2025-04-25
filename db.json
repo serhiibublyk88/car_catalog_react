@@ -1,0 +1,95 @@
+{
+  "cars": [
+    {
+      "id": "1",
+      "name": "Toyota Camry",
+      "price": 24970,
+      "image": "/images/1.jpg",
+      "description": "Die Toyota Camry bietet eine komfortable Fahrt mit zuverlässiger Technik. Sie ist sparsam im Verbrauch und ideal für Familien. Das Interieur überzeugt durch hochwertige Verarbeitung."
+    },
+    {
+      "id": "2",
+      "name": "Honda Civic",
+      "price": 22545,
+      "image": "/images/2.jpg",
+      "description": "Der Honda Civic besticht durch sein sportliches Design und moderne Technik. Er bietet eine hervorragende Straßenlage und Effizienz. Besonders beliebt bei jungen Fahrern."
+    },
+    {
+      "id": "3",
+      "name": "Ford Mustang",
+      "price": 28840,
+      "image": "/images/3.jpg",
+      "description": "Der Ford Mustang steht für pure Leistung und amerikanisches Muscle-Car-Feeling. Sein V8-Motor liefert beeindruckende Beschleunigung. Ein Klassiker mit Kultstatus."
+    },
+    {
+      "id": "4",
+      "name": "Chevrolet Corvette",
+      "price": 62195,
+      "image": "/images/4.jpg",
+      "description": "Die Corvette bietet ein atemberaubendes Design und extrem starke Leistung. Ideal für Liebhaber schneller Autos. Innen wie außen ein echter Hingucker."
+    },
+    {
+      "id": "5",
+      "name": "Tesla Model S",
+      "price": 79990,
+      "image": "/images/5.jpg",
+      "description": "Das Tesla Model S ist ein innovatives Elektrofahrzeug mit hoher Reichweite. Die Beschleunigung ist blitzschnell und das Design futuristisch. Autonomes Fahren ist serienmäßig verfügbar."
+    },
+    {
+      "id": "6",
+      "name": "BMW 3 Series",
+      "price": 43700,
+      "image": "/images/6.jpg",
+      "description": "Die BMW 3er-Reihe kombiniert sportliches Fahrverhalten mit Luxus. Die Innenausstattung ist elegant und funktional. Ideal für Geschäftsreisende und Vielfahrer."
+    },
+    {
+      "id": "7",
+      "name": "Audi A4",
+      "price": 40415,
+      "image": "/images/7.jpg",
+      "description": "Der Audi A4 überzeugt mit präziser Verarbeitung und innovativen Features. Er bietet eine ruhige Fahrt und hochwertige Technik. Ein Klassiker unter den Mittelklassewagen."
+    },
+    {
+      "id": "8",
+      "name": "Mercedes-Benz C-Class",
+      "price": 43600,
+      "image": "/images/8.jpg",
+      "description": "Die Mercedes C-Klasse bietet elegantes Design mit neuesten Sicherheitssystemen. Komfort wird hier großgeschrieben. Die Fahrt ist geschmeidig und angenehm."
+    },
+    {
+      "id": "9",
+      "name": "McLaren",
+      "price": 300000,
+      "image": "https://mclaren.scene7.com/is/image/mclaren/1597-McLarenP1trade:crop-2x1?wid=1940&hei=970",
+      "description": "Ein Supersportwagen mit radikalem Design und Rennstreckengenetik. Der McLaren bietet extreme Performance für anspruchsvolle Fahrer. Luxus und Geschwindigkeit auf höchstem Niveau."
+    },
+    {
+      "id": "1a11",
+      "name": "OLiver",
+      "price": 1,
+      "image": "https://moscowteslaclub.ru/upload/iblock/aca/7fe9bficpoawre4plyqamhjrcbx89y2j.jpg",
+      "description": "Ein einzigartiges Einzelstück mit Charme. OLiver ist ideal für Sammler und Individualisten. Mit einem Preis von 1 Euro ein echtes Symbolfahrzeug."
+    },
+    {
+      "id": "e9a2",
+      "name": "Ford Explorer",
+      "price": 60000,
+      "image": "https://media.ed.edmunds-media.com/ford/explorer/2018/oem/2018_ford_explorer_4dr-suv_platinum_fq_oem_1_1600.jpg",
+      "description": "Der Ford Explorer ist ein robuster SUV mit viel Platz für Familie und Abenteuer. Allradantrieb sorgt für Sicherheit auf allen Wegen. Ein vielseitiger Begleiter für jedes Terrain."
+    },
+    {
+      "id": "7051",
+      "name": "Mercedes GLS",
+      "price": 120000,
+      "image": "https://img.auto-motor-und-sport.de/_/bg:FFFFFF/f:best/h:1238/rt:fill/w:2200/plain/906611.jpg",
+      "description": "Der Mercedes GLS ist ein Luxus-SUV mit imposanter Erscheinung. Modernste Technologie trifft auf höchsten Komfort. Ideal für Langstrecken und exklusives Reisen."
+    },
+    {
+      "name": "у33",
+      "price": 33,
+      "description": "3ууфывф",
+      "image": "https://moscowteslaclub.ru/upload/iblock/aca/7fe9bficpoawre4plyqamhjrcbx89y2j.jpg",
+      "id": "0f46"
+    }
+  ]
+}
