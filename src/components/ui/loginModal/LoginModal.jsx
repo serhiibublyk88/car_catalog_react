@@ -1,5 +1,5 @@
 import Modal from 'react-modal';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { useAuth } from '../../../hooks/useAuth';
 import { toast } from 'react-toastify';
 import styles from './LoginModal.module.css';
@@ -11,22 +11,28 @@ const LoginModal = ({ isOpen, onClose }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = (e) => {
-    e.preventDefault();
+  const handleLogin = useCallback(
+    (e) => {
+      e.preventDefault();
 
-    if (!email || !password) {
-      toast.warn('Bitte alle Felder ausfüllen');
-      return;
-    }
+      if (!email || !password) {
+        toast.warn('Bitte alle Felder ausfüllen');
+        return;
+      }
 
-    if (email === 'admin@admin.de' && password === '1111') {
-      login({ email, role: 'admin' });
-      toast.success('Willkommen, Admin!');
-      onClose();
-    } else {
-      toast.error('Falsche Zugangsdaten');
-    }
-  };
+      const isValidCredentials =
+        email === 'admin@admin.de' && password === '1111';
+
+      if (isValidCredentials) {
+        login({ email, role: 'admin' });
+        toast.success('Willkommen, Admin!');
+        onClose();
+      } else {
+        toast.error('Falsche Zugangsdaten');
+      }
+    },
+    [email, password, login, onClose]
+  );
 
   return (
     <Modal
@@ -49,7 +55,6 @@ const LoginModal = ({ isOpen, onClose }) => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-
         <div className={styles.actions}>
           <button type="button" onClick={onClose}>
             Abbrechen

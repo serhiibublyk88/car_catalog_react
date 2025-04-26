@@ -1,11 +1,15 @@
-import { useMemo, useState } from 'react';
-import styles from './Home.module.css';
+import { useMemo, useState, useCallback, lazy, Suspense } from 'react';
 import CarItem from './car-item/CarItem';
 import { useQuery } from '@tanstack/react-query';
 import { CarService } from '../../../services/car.service';
 import { FiFilter, FiPlus } from 'react-icons/fi';
 import { useAuth } from '../../../hooks/useAuth';
-import AddCarModal from '../../../components/ui/addCarModal/AddCarModal';
+import Loader from '../../ui/Loader';
+import styles from './Home.module.css';
+
+const AddCarModal = lazy(
+  () => import('../../../components/ui/addCarModal/AddCarModal')
+);
 
 function Home() {
   const [minPrice, setMinPrice] = useState(0);
@@ -27,6 +31,9 @@ function Home() {
     return cars.filter((car) => car.price >= minPrice);
   }, [cars, minPrice]);
 
+  const handleOpenAddCar = useCallback(() => setIsAddCarOpen(true), []);
+  const handleCloseAddCar = useCallback(() => setIsAddCarOpen(false), []);
+
   return (
     <div className={styles.container}>
       <div className={styles.top}>
@@ -37,7 +44,7 @@ function Home() {
         {user?.role === 'admin' && (
           <button
             className={styles.iconButton}
-            onClick={() => setIsAddCarOpen(true)}
+            onClick={handleOpenAddCar}
             title="Auto hinzufügen"
           >
             <FiPlus />
@@ -53,33 +60,32 @@ function Home() {
         </button>
       </div>
 
-      <div className={styles.filterWrapper}>
-        {isFilterVisible && (
-          <div className={styles.filterBlock}>
-            <label>
-              Minimaler Preis:
-              <input
-                type="number"
-                value={minPrice}
-                onChange={(e) => setMinPrice(Number(e.target.value))}
-              />
-            </label>
-          </div>
-        )}
-      </div>
+      {isFilterVisible && (
+        <div className={styles.filterBlock}>
+          <label>
+            Minimaler Preis:
+            <input
+              type="number"
+              value={minPrice}
+              onChange={(e) => setMinPrice(Number(e.target.value))}
+            />
+          </label>
+        </div>
+      )}
 
       <div className={styles.list}>
-        {isLoading && <p>Lade Autos...</p>}
+        {isLoading && <Loader />}
         {isError && <p>Fehler: {error.message}</p>}
         {!isLoading && !isError && filteredCars.length > 0
           ? filteredCars.map((car) => <CarItem key={car.id} car={car} />)
           : !isLoading && !isError && <p>Keine passenden Autos gefunden.</p>}
       </div>
 
-      <AddCarModal
-        isOpen={isAddCarOpen}
-        onClose={() => setIsAddCarOpen(false)}
-      />
+      <Suspense fallback={<Loader />}>
+        {isAddCarOpen && (
+          <AddCarModal isOpen={isAddCarOpen} onClose={handleCloseAddCar} />
+        )}
+      </Suspense>
     </div>
   );
 }

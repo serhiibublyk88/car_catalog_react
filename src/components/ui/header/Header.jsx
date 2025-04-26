@@ -1,7 +1,7 @@
 import { FiLogIn, FiLogOut, FiUser } from 'react-icons/fi';
-import styles from './Header.module.css';
-import { useAuth } from '../../../hooks/useAuth';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../../hooks/useAuth';
+import styles from './Header.module.css';
 
 const Header = ({ onLoginClick }) => {
   const { user, logout } = useAuth();

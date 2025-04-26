@@ -9,7 +9,7 @@
   flex-direction: column;
   justify-content: space-between;
   transition: all 0.3s ease;
-  position: relative; /* важно для абсолютных иконок */
+  position: relative;
 }
 
 .big {
@@ -59,4 +59,21 @@
   transition:
     background-color 0.2s ease,
     transform 0.1s ease;
+}
+
+/* Стили для ссылки "Read more", чтобы она была как кнопка */
+.readMoreLink {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 16px;
+  background-color: #198754;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  font-size: 1rem;
+}
+
+.readMoreLink:hover {
+  background-color: #157347;
 }

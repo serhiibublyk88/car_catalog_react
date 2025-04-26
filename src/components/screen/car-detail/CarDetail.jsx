@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { CarService } from '../../../services/car.service';
-import styles from './CarDetail.module.css';
 import { toast } from 'react-toastify';
+import { CarService } from '../../../services/car.service';
+import Loader from '../../ui/Loader';
+import styles from './CarDetail.module.css';
 
 const CarDetail = () => {
   const { id } = useParams();
@@ -22,7 +23,7 @@ const CarDetail = () => {
     queryKey: ['car', id],
     queryFn: () =>
       id ? CarService.getById(id) : Promise.reject('Kein ID angegeben'),
-    enabled: Boolean(id), // Запрос только если id есть
+    enabled: Boolean(id),
   });
 
   const [formData, setFormData] = useState({
@@ -55,12 +56,12 @@ const CarDetail = () => {
     },
   });
 
-  const handleChange = (e) => {
+  const handleChange = useCallback((e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+  }, []);
 
-  const handleSave = () => {
+  const handleSave = useCallback(() => {
     if (!formData.name || !formData.price || !formData.image) {
       toast.warn('Bitte alle Felder ausfüllen');
       return;
@@ -72,13 +73,21 @@ const CarDetail = () => {
       description: formData.description,
       image: formData.image,
     });
-  };
+  }, [formData, mutation]);
 
-  const handleCancel = () => {
-    navigate(`/cars/${id}`);
-  };
+  const handleCancel = useCallback(() => {
+    navigate(-1);
+  }, [navigate]);
 
-  if (isLoading) return <div>Auto wird geladen...</div>;
+  const formattedPrice = useMemo(() => {
+    if (!car?.price) return null;
+    return new Intl.NumberFormat('de-DE', {
+      style: 'currency',
+      currency: 'EUR',
+    }).format(car.price);
+  }, [car?.price]);
+
+  if (isLoading) return <Loader />;
   if (isError) return <div>Fehler: {error.message}</div>;
   if (!car) return <div>Auto nicht gefunden.</div>;
 
@@ -139,13 +148,7 @@ const CarDetail = () => {
         ) : (
           <>
             <h1>{car.name}</h1>
-            <p className={styles.price}>
-              Preis:{' '}
-              {new Intl.NumberFormat('de-DE', {
-                style: 'currency',
-                currency: 'EUR',
-              }).format(car.price)}
-            </p>
+            <p className={styles.price}>Preis: {formattedPrice}</p>
             <p className={styles.description}>
               {car.description ||
                 'Hier könnte eine ausführliche Beschreibung stehen...'}

@@ -1,5 +1,5 @@
 import Modal from 'react-modal';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import styles from './AddCarModal.module.css';
 import { toast } from 'react-toastify';
 import { CarService } from '../../../services/car.service';
@@ -8,7 +8,7 @@ import { useQueryClient } from '@tanstack/react-query';
 Modal.setAppElement('#root');
 
 const AddCarModal = ({ isOpen, onClose }) => {
-  const [car, setCar] = useState({
+  const [carData, setCarData] = useState({
     name: '',
     price: '',
     image: '',
@@ -17,33 +17,44 @@ const AddCarModal = ({ isOpen, onClose }) => {
 
   const queryClient = useQueryClient();
 
-  const handleChange = (e) => {
-    setCar({ ...car, [e.target.name]: e.target.value });
-  };
+  const resetForm = useCallback(() => {
+    setCarData({ name: '', price: '', image: '', description: '' });
+  }, []);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleChange = useCallback((e) => {
+    const { name, value } = e.target;
+    setCarData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  }, []);
 
-    if (!car.name || !car.price || !car.image) {
-      toast.warn('Bitte alle Felder ausfüllen');
-      return;
-    }
+  const handleSubmit = useCallback(
+    async (e) => {
+      e.preventDefault();
 
-    try {
-      await CarService.create({
-        ...car,
-        price: Number(car.price),
-        description: car.description.trim() || undefined,
-      });
+      if (!carData.name || !carData.price || !carData.image) {
+        toast.warn('Bitte alle Felder ausfüllen');
+        return;
+      }
 
-      toast.success('Auto hinzugefügt');
-      queryClient.invalidateQueries(['cars']);
-      setCar({ name: '', price: '', image: '', description: '' });
-      onClose();
-    } catch {
-      toast.error('Fehler beim Hinzufügen');
-    }
-  };
+      try {
+        await CarService.create({
+          ...carData,
+          price: Number(carData.price),
+          description: carData.description.trim() || undefined,
+        });
+
+        toast.success('Auto hinzugefügt');
+        queryClient.invalidateQueries(['cars']);
+        resetForm();
+        onClose();
+      } catch (err) {
+        toast.error(err?.message || 'Fehler beim Hinzufügen');
+      }
+    },
+    [carData, queryClient, onClose, resetForm]
+  );
 
   return (
     <Modal
@@ -58,27 +69,27 @@ const AddCarModal = ({ isOpen, onClose }) => {
           type="text"
           name="name"
           placeholder="Name"
-          value={car.name}
+          value={carData.name}
           onChange={handleChange}
         />
         <input
           type="number"
           name="price"
           placeholder="Preis"
-          value={car.price}
+          value={carData.price}
           onChange={handleChange}
         />
         <input
           type="text"
           name="image"
           placeholder="Bild-URL"
-          value={car.image}
+          value={carData.image}
           onChange={handleChange}
         />
         <textarea
           name="description"
           placeholder="Beschreibung"
-          value={car.description}
+          value={carData.description}
           onChange={handleChange}
           rows={3}
           className={styles.textarea}

@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from 'react';
+import { useEffect, useMemo, useReducer } from 'react';
 import { AuthContext } from './AuthContext';
 
 const initialState = {
@@ -33,9 +33,16 @@ export const AuthProvider = ({ children }) => {
   const login = (user) => dispatch({ type: 'LOGIN', payload: user });
   const logout = () => dispatch({ type: 'LOGOUT' });
 
+  const contextValue = useMemo(
+    () => ({
+      user: state.user,
+      login,
+      logout,
+    }),
+    [state.user]
+  );
+
   return (
-    <AuthContext.Provider value={{ user: state.user, login, logout }}>
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
   );
 };

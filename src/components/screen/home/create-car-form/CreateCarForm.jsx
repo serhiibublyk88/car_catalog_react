@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { CarService } from '../../../../services/car.service';
 import { useToast } from '../../../../hooks/useToast';
@@ -14,12 +14,16 @@ const CreateCarForm = () => {
   const { success, error, warn } = useToast();
   const queryClient = useQueryClient();
 
+  const resetForm = () => {
+    setData({ name: '', price: '', image: '' });
+  };
+
   const { mutate } = useMutation({
     mutationFn: (newCar) => CarService.create(newCar),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['cars'] });
       success('Auto wurde erfolgreich hinzugefügt!');
-      setData({ name: '', price: '', image: '' });
+      resetForm();
     },
     onError: (err) => {
       console.error('Fehler beim Speichern:', err);
@@ -27,24 +31,27 @@ const CreateCarForm = () => {
     },
   });
 
-  const handleChange = (e) => {
+  const handleChange = useCallback((e) => {
     const { name, value } = e.target;
     setData((prev) => ({
       ...prev,
       [name]: value,
     }));
-  };
+  }, []);
 
-  const createCar = (e) => {
-    e.preventDefault();
+  const createCar = useCallback(
+    (e) => {
+      e.preventDefault();
 
-    if (!data.name || !data.price || !data.image) {
-      warn('Bitte füllen Sie alle Felder aus.');
-      return;
-    }
+      if (!data.name || !data.price || !data.image) {
+        warn('Bitte füllen Sie alle Felder aus.');
+        return;
+      }
 
-    mutate({ ...data, price: Number(data.price) });
-  };
+      mutate({ ...data, price: Number(data.price) });
+    },
+    [data, mutate, warn]
+  );
 
   return (
     <form className={styles.form} onSubmit={createCar}>
@@ -62,6 +69,7 @@ const CreateCarForm = () => {
         name="price"
         placeholder="Preis"
         value={data.price}
+        min="0"
         onChange={handleChange}
       />
       <input
