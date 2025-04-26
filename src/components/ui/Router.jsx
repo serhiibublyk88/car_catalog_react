@@ -1,11 +1,10 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState } from "react";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useState } from 'react';
 
-import Home from "../screen/home/Home";
-import CarDetail from "../screen/car-detail/CarDetail";
-import Header from "../../components/ui/header/Header";
-import LoginModal from "../../components/ui/loginModal/LoginModal";
-
+import Home from '../screen/home/Home';
+import CarDetail from '../screen/car-detail/CarDetail';
+import Header from '../../components/ui/header/Header';
+import LoginModal from '../../components/ui/loginModal/LoginModal';
 
 const Router = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);

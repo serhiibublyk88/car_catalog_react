@@ -53,18 +53,15 @@ button {
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
- 
 }
 
-
-
-button[type="button"] {
+button[type='button'] {
   background-color: #aaa;
   color: white;
 }
 
-button[type="button"]:hover {
-   background-color: rgb(122, 119, 119);
+button[type='button']:hover {
+  background-color: rgb(122, 119, 119);
 }
 
 .buttonContainer {

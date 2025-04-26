@@ -1,30 +1,30 @@
-import Modal from "react-modal";
-import { useState } from "react";
-import { useAuth } from "../../../hooks/useAuth";
-import { toast } from "react-toastify";
-import styles from "./LoginModal.module.css";
+import Modal from 'react-modal';
+import { useState } from 'react';
+import { useAuth } from '../../../hooks/useAuth';
+import { toast } from 'react-toastify';
+import styles from './LoginModal.module.css';
 
-Modal.setAppElement("#root");
+Modal.setAppElement('#root');
 
 const LoginModal = ({ isOpen, onClose }) => {
   const { login } = useAuth();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleLogin = (e) => {
     e.preventDefault();
 
     if (!email || !password) {
-      toast.warn("Bitte alle Felder ausfüllen");
+      toast.warn('Bitte alle Felder ausfüllen');
       return;
     }
 
-    if (email === "admin@admin.de" && password === "1111") {
-      login({ email, role: "admin" });
-      toast.success("Willkommen, Admin!");
+    if (email === 'admin@admin.de' && password === '1111') {
+      login({ email, role: 'admin' });
+      toast.success('Willkommen, Admin!');
       onClose();
     } else {
-      toast.error("Falsche Zugangsdaten");
+      toast.error('Falsche Zugangsdaten');
     }
   };
 

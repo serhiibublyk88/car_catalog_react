@@ -1,11 +1,11 @@
-import { useMemo, useState } from "react";
-import styles from "./Home.module.css";
-import CarItem from "./car-item/CarItem";
-import { useQuery } from "@tanstack/react-query";
-import { CarService } from "../../../services/car.service";
-import { FiFilter, FiPlus } from "react-icons/fi";
-import { useAuth } from "../../../hooks/useAuth";
-import AddCarModal from "../../../components/ui/addCarModal/AddCarModal";
+import { useMemo, useState } from 'react';
+import styles from './Home.module.css';
+import CarItem from './car-item/CarItem';
+import { useQuery } from '@tanstack/react-query';
+import { CarService } from '../../../services/car.service';
+import { FiFilter, FiPlus } from 'react-icons/fi';
+import { useAuth } from '../../../hooks/useAuth';
+import AddCarModal from '../../../components/ui/addCarModal/AddCarModal';
 
 function Home() {
   const [minPrice, setMinPrice] = useState(0);
@@ -19,7 +19,7 @@ function Home() {
     isError,
     error,
   } = useQuery({
-    queryKey: ["cars"],
+    queryKey: ['cars'],
     queryFn: CarService.getAll,
   });
 
@@ -34,7 +34,7 @@ function Home() {
       </div>
 
       <div className={styles.actionsRow}>
-        {user?.role === "admin" && (
+        {user?.role === 'admin' && (
           <button
             className={styles.iconButton}
             onClick={() => setIsAddCarOpen(true)}

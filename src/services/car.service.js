@@ -1,8 +1,8 @@
-import { api } from "./api";
+import { api } from './api';
 
 export const CarService = {
   async getAll() {
-    const response = await api.get("/cars");
+    const response = await api.get('/cars');
     return response.data;
   },
 
@@ -12,7 +12,7 @@ export const CarService = {
   },
 
   async create(car) {
-    const response = await api.post("/cars", car);
+    const response = await api.post('/cars', car);
     return response.data;
   },
 

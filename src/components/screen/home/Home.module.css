@@ -34,10 +34,10 @@
   color: white;
   font-size: 1.5rem;
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.1s ease;
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
 }
-
-
 
 .filterWrapper {
   height: 50px;
@@ -80,6 +80,7 @@
   color: white;
   font-size: 1.5rem;
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.1s ease;
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
 }
-

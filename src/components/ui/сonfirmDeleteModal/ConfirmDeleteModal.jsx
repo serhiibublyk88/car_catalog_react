@@ -1,7 +1,7 @@
-import Modal from "react-modal";
-import styles from "./ConfirmDeleteModal.module.css";
+import Modal from 'react-modal';
+import styles from './ConfirmDeleteModal.module.css';
 
-Modal.setAppElement("#root");
+Modal.setAppElement('#root');
 
 const ConfirmDeleteModal = ({ isOpen, onClose, onConfirm }) => {
   return (

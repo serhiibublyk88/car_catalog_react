@@ -1,18 +1,18 @@
-import Modal from "react-modal";
-import { useState } from "react";
-import styles from "./AddCarModal.module.css";
-import { toast } from "react-toastify";
-import { CarService } from "../../../services/car.service";
-import { useQueryClient } from "@tanstack/react-query";
+import Modal from 'react-modal';
+import { useState } from 'react';
+import styles from './AddCarModal.module.css';
+import { toast } from 'react-toastify';
+import { CarService } from '../../../services/car.service';
+import { useQueryClient } from '@tanstack/react-query';
 
-Modal.setAppElement("#root");
+Modal.setAppElement('#root');
 
 const AddCarModal = ({ isOpen, onClose }) => {
   const [car, setCar] = useState({
-    name: "",
-    price: "",
-    image: "",
-    description: "",
+    name: '',
+    price: '',
+    image: '',
+    description: '',
   });
 
   const queryClient = useQueryClient();
@@ -25,7 +25,7 @@ const AddCarModal = ({ isOpen, onClose }) => {
     e.preventDefault();
 
     if (!car.name || !car.price || !car.image) {
-      toast.warn("Bitte alle Felder ausfüllen");
+      toast.warn('Bitte alle Felder ausfüllen');
       return;
     }
 
@@ -36,12 +36,12 @@ const AddCarModal = ({ isOpen, onClose }) => {
         description: car.description.trim() || undefined,
       });
 
-      toast.success("Auto hinzugefügt");
-      queryClient.invalidateQueries(["cars"]);
-      setCar({ name: "", price: "", image: "", description: "" });
+      toast.success('Auto hinzugefügt');
+      queryClient.invalidateQueries(['cars']);
+      setCar({ name: '', price: '', image: '', description: '' });
       onClose();
     } catch {
-      toast.error("Fehler beim Hinzufügen");
+      toast.error('Fehler beim Hinzufügen');
     }
   };
 

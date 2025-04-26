@@ -42,20 +42,20 @@ button {
   transition: background-color 0.2s ease;
 }
 
-button[type="button"]:first-of-type {
+button[type='button']:first-of-type {
   background-color: #aaa;
   color: white;
 }
 
-button[type="button"]:first-of-type:hover {
+button[type='button']:first-of-type:hover {
   background-color: #888;
 }
 
-button[type="button"]:last-of-type {
+button[type='button']:last-of-type {
   background-color: #198754;
   color: white;
 }
 
-button[type="button"]:last-of-type:hover {
+button[type='button']:last-of-type:hover {
   background-color: #157347;
 }

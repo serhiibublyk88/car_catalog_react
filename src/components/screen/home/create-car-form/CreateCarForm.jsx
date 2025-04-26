@@ -1,14 +1,14 @@
-import { useState } from "react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { CarService } from "../../../../services/car.service";
-import { useToast } from "../../../../hooks/useToast";
-import styles from "./CreateCarForm.module.css";
+import { useState } from 'react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { CarService } from '../../../../services/car.service';
+import { useToast } from '../../../../hooks/useToast';
+import styles from './CreateCarForm.module.css';
 
 const CreateCarForm = () => {
   const [data, setData] = useState({
-    name: "",
-    price: "",
-    image: "",
+    name: '',
+    price: '',
+    image: '',
   });
 
   const { success, error, warn } = useToast();
@@ -17,13 +17,13 @@ const CreateCarForm = () => {
   const { mutate } = useMutation({
     mutationFn: (newCar) => CarService.create(newCar),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["cars"] });
-      success("Auto wurde erfolgreich hinzugefügt!");
-      setData({ name: "", price: "", image: "" });
+      queryClient.invalidateQueries({ queryKey: ['cars'] });
+      success('Auto wurde erfolgreich hinzugefügt!');
+      setData({ name: '', price: '', image: '' });
     },
     onError: (err) => {
-      console.error("Fehler beim Speichern:", err);
-      error("Fehler beim Speichern des Autos.");
+      console.error('Fehler beim Speichern:', err);
+      error('Fehler beim Speichern des Autos.');
     },
   });
 
@@ -39,7 +39,7 @@ const CreateCarForm = () => {
     e.preventDefault();
 
     if (!data.name || !data.price || !data.image) {
-      warn("Bitte füllen Sie alle Felder aus.");
+      warn('Bitte füllen Sie alle Felder aus.');
       return;
     }
 

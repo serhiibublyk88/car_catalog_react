@@ -55,12 +55,12 @@ button {
   font-weight: bold;
 }
 
-button[type="button"] {
+button[type='button'] {
   background-color: #aaa;
   color: white;
 }
 
-button[type="button"]:hover {
+button[type='button']:hover {
   background-color: #888;
 }
 
@@ -72,4 +72,3 @@ button[type="button"]:hover {
   color: white;
   resize: vertical;
 }
-

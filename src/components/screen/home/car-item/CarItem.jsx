@@ -1,13 +1,13 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { FiEdit, FiTrash2 } from "react-icons/fi";
-import { useQueryClient } from "@tanstack/react-query"; 
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { FiEdit, FiTrash2 } from 'react-icons/fi';
+import { useQueryClient } from '@tanstack/react-query';
 
-import styles from "./CarItem.module.css";
-import ConfirmDeleteModal from "../../../../components/ui/сonfirmDeleteModal/ConfirmDeleteModal";
-import { useAuth } from "../../../../hooks/useAuth";
-import { CarService } from "../../../../services/car.service";
-import { toast } from "react-toastify";
+import styles from './CarItem.module.css';
+import ConfirmDeleteModal from '../../../../components/ui/сonfirmDeleteModal/ConfirmDeleteModal';
+import { useAuth } from '../../../../hooks/useAuth';
+import { CarService } from '../../../../services/car.service';
+import { toast } from 'react-toastify';
 
 function CarItem({ car, isBig = false }) {
   const { user } = useAuth();
@@ -18,17 +18,17 @@ function CarItem({ car, isBig = false }) {
   const handleDelete = async () => {
     try {
       await CarService.deleteCar(car.id);
-      toast.success("Auto erfolgreich gelöscht!");
+      toast.success('Auto erfolgreich gelöscht!');
       setIsDeleteModalOpen(false);
-      queryClient.invalidateQueries(["cars"]); 
+      queryClient.invalidateQueries(['cars']);
     } catch {
-      toast.error("Fehler beim Löschen");
+      toast.error('Fehler beim Löschen');
     }
   };
 
   return (
-    <div className={`${styles.item} ${isBig ? styles.big : ""}`}>
-      {user?.role === "admin" && (
+    <div className={`${styles.item} ${isBig ? styles.big : ''}`}>
+      {user?.role === 'admin' && (
         <div className={styles.actions}>
           <button
             className={styles.iconButton}
@@ -55,10 +55,10 @@ function CarItem({ car, isBig = false }) {
       <div className={styles.info}>
         <h2>{car.name}</h2>
         <p>
-          {new Intl.NumberFormat("en-US", {
-            style: "currency",
-            currency: "USD",
-            currencyDisplay: "narrowSymbol",
+          {new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+            currencyDisplay: 'narrowSymbol',
           }).format(car.price)}
         </p>
         <Link to={`/cars/${car.id}`}>
