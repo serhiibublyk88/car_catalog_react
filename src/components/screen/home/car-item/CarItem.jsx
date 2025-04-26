@@ -2,17 +2,16 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FiEdit, FiTrash2 } from 'react-icons/fi';
 import { useQueryClient } from '@tanstack/react-query';
-
-import styles from './CarItem.module.css';
 import ConfirmDeleteModal from '../../../../components/ui/сonfirmDeleteModal/ConfirmDeleteModal';
 import { useAuth } from '../../../../hooks/useAuth';
 import { CarService } from '../../../../services/car.service';
 import { toast } from 'react-toastify';
+import styles from './CarItem.module.css';
 
 function CarItem({ car, isBig = false }) {
   const { user } = useAuth();
   const navigate = useNavigate();
-  const queryClient = useQueryClient(); // ✅
+  const queryClient = useQueryClient();
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   const handleDelete = async () => {

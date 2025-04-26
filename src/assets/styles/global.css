@@ -26,3 +26,6 @@ button {
 button:hover {
   background-color: #157347;
 }
+.Toastify__close-button {
+  background: transparent !important;
+}

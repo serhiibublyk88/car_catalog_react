@@ -20,20 +20,26 @@ const CarDetail = () => {
     error,
   } = useQuery({
     queryKey: ['car', id],
-    queryFn: () => CarService.getById(id),
+    queryFn: () =>
+      id ? CarService.getById(id) : Promise.reject('Kein ID angegeben'),
+    enabled: Boolean(id), // Запрос только если id есть
   });
 
-  const [name, setName] = useState('');
-  const [price, setPrice] = useState('');
-  const [description, setDescription] = useState('');
-  const [image, setImage] = useState('');
+  const [formData, setFormData] = useState({
+    name: '',
+    price: '',
+    description: '',
+    image: '',
+  });
 
   useEffect(() => {
     if (car) {
-      setName(car.name);
-      setPrice(car.price);
-      setDescription(car.description || '');
-      setImage(car.image || '');
+      setFormData({
+        name: car.name || '',
+        price: car.price || '',
+        description: car.description || '',
+        image: car.image || '',
+      });
     }
   }, [car]);
 
@@ -49,13 +55,23 @@ const CarDetail = () => {
     },
   });
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
   const handleSave = () => {
-    if (!name || !price || !image) {
+    if (!formData.name || !formData.price || !formData.image) {
       toast.warn('Bitte alle Felder ausfüllen');
       return;
     }
 
-    mutation.mutate({ name, price: Number(price), description, image });
+    mutation.mutate({
+      name: formData.name,
+      price: Number(formData.price),
+      description: formData.description,
+      image: formData.image,
+    });
   };
 
   const handleCancel = () => {
@@ -73,34 +89,44 @@ const CarDetail = () => {
       </button>
 
       <div className={styles.detail}>
-        <img className={styles.image} src={image} alt={name} />
+        {formData.image && (
+          <img
+            className={styles.image}
+            src={formData.image}
+            alt={formData.name}
+          />
+        )}
 
         {isEdit ? (
           <>
             <input
               type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
               className={styles.input}
               placeholder="Name"
             />
             <input
               type="number"
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
+              name="price"
+              value={formData.price}
+              onChange={handleChange}
               className={styles.input}
               placeholder="Preis"
             />
             <input
               type="text"
-              value={image}
-              onChange={(e) => setImage(e.target.value)}
+              name="image"
+              value={formData.image}
+              onChange={handleChange}
               className={styles.input}
               placeholder="Bild-URL"
             />
             <textarea
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
               className={styles.textarea}
               rows={4}
               placeholder="Beschreibung"
