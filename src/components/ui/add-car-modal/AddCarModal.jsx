@@ -1,13 +1,13 @@
 import Modal from 'react-modal';
 import { useState, useCallback } from 'react';
-import styles from './AddCarModal.module.css';
 import { toast } from 'react-toastify';
-import { CarService } from '../../../services/car.service';
+import { CarService } from '@/services';
 import { useQueryClient } from '@tanstack/react-query';
+import styles from './AddCarModal.module.css';
 
 Modal.setAppElement('#root');
 
-const AddCarModal = ({ isOpen, onClose }) => {
+export const AddCarModal = ({ isOpen, onClose }) => {
   const [carData, setCarData] = useState({
     name: '',
     price: '',
@@ -105,5 +105,3 @@ const AddCarModal = ({ isOpen, onClose }) => {
     </Modal>
   );
 };
-
-export default AddCarModal;

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-const apiClient = axios.create({
+export const apiClient = axios.create({
   baseURL: 'http://localhost:4200',
   headers: {
     'Content-Type': 'application/json',
@@ -18,5 +18,3 @@ apiClient.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-
-export default apiClient;

@@ -1,12 +1,12 @@
 import Modal from 'react-modal';
 import { useState, useCallback } from 'react';
-import { useAuth } from '../../../hooks/useAuth';
+import { useAuth } from '@/hooks';
 import { toast } from 'react-toastify';
 import styles from './LoginModal.module.css';
 
 Modal.setAppElement('#root');
 
-const LoginModal = ({ isOpen, onClose }) => {
+export const LoginModal = ({ isOpen, onClose }) => {
   const { login } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -65,5 +65,3 @@ const LoginModal = ({ isOpen, onClose }) => {
     </Modal>
   );
 };
-
-export default LoginModal;

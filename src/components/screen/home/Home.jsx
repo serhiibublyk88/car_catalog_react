@@ -1,17 +1,18 @@
-import { useMemo, useState, useCallback, lazy, Suspense } from 'react';
-import CarItem from './car-item/CarItem';
 import { useQuery } from '@tanstack/react-query';
-import { CarService } from '../../../services/car.service';
+import { lazy, Suspense, useCallback, useMemo, useState } from 'react';
 import { FiFilter, FiPlus } from 'react-icons/fi';
-import { useAuth } from '../../../hooks/useAuth';
-import Loader from '../../ui/Loader';
+import { useAuth } from '@/hooks';
+import { CarService } from '@/services';
+import { CarItem, Loader } from '@/components/ui';
 import styles from './Home.module.css';
 
-const AddCarModal = lazy(
-  () => import('../../../components/ui/addCarModal/AddCarModal')
+const AddCarModal = lazy(() =>
+  import('@/components/ui/add-car-modal/AddCarModal').then((module) => ({
+    default: module.AddCarModal,
+  }))
 );
 
-function Home() {
+export const Home = () => {
   const [minPrice, setMinPrice] = useState(0);
   const [isFilterVisible, setIsFilterVisible] = useState(false);
   const [isAddCarOpen, setIsAddCarOpen] = useState(false);
@@ -88,6 +89,4 @@ function Home() {
       </Suspense>
     </div>
   );
-}
-
-export default Home;
+};

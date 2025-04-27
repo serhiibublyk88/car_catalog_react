@@ -1,13 +1,24 @@
 import { lazy, Suspense, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Header from '../../components/ui/header/Header';
-import Loader from './Loader';
+import { Header, Loader } from '@/components/ui';
 
-const Home = lazy(() => import('../screen/home/Home'));
-const CarDetail = lazy(() => import('../screen/car-detail/CarDetail'));
-const LoginModal = lazy(() => import('./loginModal/LoginModal'));
+const Home = lazy(() =>
+  import('@/components/screen/home/Home').then((module) => ({
+    default: module.Home,
+  }))
+);
+const CarDetail = lazy(() =>
+  import('@/components/screen/car-detail/CarDetail').then((module) => ({
+    default: module.CarDetail,
+  }))
+);
+const LoginModal = lazy(() =>
+  import('@/components/ui/login-modal/LoginModal').then((module) => ({
+    default: module.LoginModal,
+  }))
+);
 
-const Router = () => {
+export const Router = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   return (
@@ -31,5 +42,3 @@ const Router = () => {
     </BrowserRouter>
   );
 };
-
-export default Router;

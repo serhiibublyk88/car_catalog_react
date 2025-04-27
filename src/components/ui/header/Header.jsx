@@ -1,9 +1,9 @@
 import { FiLogIn, FiLogOut, FiUser } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../../../hooks/useAuth';
+import { useAuth } from '@/hooks';
 import styles from './Header.module.css';
 
-const Header = ({ onLoginClick }) => {
+export const Header = ({ onLoginClick }) => {
   const { user, logout } = useAuth();
 
   return (
@@ -40,5 +40,3 @@ const Header = ({ onLoginClick }) => {
     </header>
   );
 };
-
-export default Header;

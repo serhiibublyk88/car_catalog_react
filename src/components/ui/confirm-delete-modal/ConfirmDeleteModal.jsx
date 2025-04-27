@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import Modal from 'react-modal';
 import styles from './ConfirmDeleteModal.module.css';
 
-const ConfirmDeleteModal = ({ isOpen, onClose, onConfirm }) => {
+export const ConfirmDeleteModal = ({ isOpen, onClose, onConfirm }) => {
   const handleClose = useCallback(() => {
     onClose();
   }, [onClose]);
@@ -34,5 +34,3 @@ const ConfirmDeleteModal = ({ isOpen, onClose, onConfirm }) => {
     </Modal>
   );
 };
-
-export default ConfirmDeleteModal;

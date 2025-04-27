@@ -1,14 +1,12 @@
+import { ErrorBoundary, GlobalToaster } from '@/components/ui';
+import { AuthProvider } from '@/context';
+import { Router } from '@/routes';
+import '@/styles/global.css';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import Modal from 'react-modal';
-import './assets/styles/global.css';
-import Router from './components/ui/Router.jsx';
-
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { ErrorBoundary } from './components/ui/ErrorBoundary';
-import GlobalToaster from './components/ui/GlobalToaster';
-import { AuthProvider } from './context/AuthProvider';
 
 Modal.setAppElement('#root');
 

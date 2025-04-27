@@ -1,18 +1,22 @@
-import { useState, useCallback, lazy, Suspense } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { FiEdit, FiTrash2 } from 'react-icons/fi';
 import { useQueryClient } from '@tanstack/react-query';
-import { useAuth } from '../../../../hooks/useAuth';
-import { CarService } from '../../../../services/car.service';
+import { lazy, Suspense, useCallback, useState } from 'react';
+import { FiEdit, FiTrash2 } from 'react-icons/fi';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useAuth } from '@/hooks';
+import { CarService } from '@/services';
+import { Loader } from '@/components/ui';
 import styles from './CarItem.module.css';
-import Loader from '../../../ui/Loader';
 
-const ConfirmDeleteModal = lazy(
-  () => import('../../../ui/сonfirmDeleteModal/ConfirmDeleteModal')
+const ConfirmDeleteModal = lazy(() =>
+  import('@/components/ui/confirm-delete-modal/ConfirmDeleteModal').then(
+    (module) => ({
+      default: module.ConfirmDeleteModal,
+    })
+  )
 );
 
-function CarItem({ car, isBig = false }) {
+export const CarItem = ({ car, isBig = false }) => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -43,7 +47,7 @@ function CarItem({ car, isBig = false }) {
 
   const backgroundImage = car.image
     ? `url(${car.image})`
-    : 'url(/default-car.jpg)'; // запасная картинка если нет изображения
+    : 'url(/default-car.jpg)';
 
   return (
     <div className={`${styles.item} ${isBig ? styles.big : ''}`}>
@@ -92,6 +96,4 @@ function CarItem({ car, isBig = false }) {
       </Suspense>
     </div>
   );
-}
-
-export default CarItem;
+};

@@ -2,11 +2,11 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { CarService } from '../../../services/car.service';
-import Loader from '../../ui/Loader';
+import { CarService } from '@/services';
+import { Loader } from '@/components/ui';
 import styles from './CarDetail.module.css';
 
-const CarDetail = () => {
+export const CarDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -159,5 +159,3 @@ const CarDetail = () => {
     </div>
   );
 };
-
-export default CarDetail;
