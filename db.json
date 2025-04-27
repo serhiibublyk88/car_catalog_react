@@ -36,13 +36,6 @@
       "description": "Das Tesla Model S ist ein innovatives Elektrofahrzeug mit hoher Reichweite. Die Beschleunigung ist blitzschnell und das Design futuristisch. Autonomes Fahren ist serienmäßig verfügbar."
     },
     {
-      "id": "6",
-      "name": "BMW 3 Series",
-      "price": 43700,
-      "image": "/images/6.jpg",
-      "description": "Die BMW 3er-Reihe kombiniert sportliches Fahrverhalten mit Luxus. Die Innenausstattung ist elegant und funktional. Ideal für Geschäftsreisende und Vielfahrer."
-    },
-    {
       "id": "7",
       "name": "Audi A4",
       "price": 40415,
@@ -64,11 +57,11 @@
       "description": "Ein Supersportwagen mit radikalem Design und Rennstreckengenetik. Der McLaren bietet extreme Performance für anspruchsvolle Fahrer. Luxus und Geschwindigkeit auf höchstem Niveau."
     },
     {
-      "id": "1a11",
-      "name": "OLiver",
-      "price": 1,
+      "name": "McLaren",
+      "price": 300000,
+      "description": "Ein einzigartiges Einzelstück mit Charme. OLiver ist ideal für Sammler und Individualisten. Mit einem Preis von 1 Euro ein echtes Symbolfahrzeug.",
       "image": "https://moscowteslaclub.ru/upload/iblock/aca/7fe9bficpoawre4plyqamhjrcbx89y2j.jpg",
-      "description": "Ein einzigartiges Einzelstück mit Charme. OLiver ist ideal für Sammler und Individualisten. Mit einem Preis von 1 Euro ein echtes Symbolfahrzeug."
+      "id": "1a11"
     },
     {
       "id": "e9a2",
@@ -83,6 +76,13 @@
       "price": 120000,
       "image": "https://img.auto-motor-und-sport.de/_/bg:FFFFFF/f:best/h:1238/rt:fill/w:2200/plain/906611.jpg",
       "description": "Der Mercedes GLS ist ein Luxus-SUV mit imposanter Erscheinung. Modernste Technologie trifft auf höchsten Komfort. Ideal für Langstrecken und exklusives Reisen."
+    },
+    {
+      "name": "Audi Q7",
+      "price": 100000,
+      "description": "Q7",
+      "image": "https://images.prismic.io/carwow/Zrn4-0aF0TcGI3Db_LHDAudiQ72024Exterior3.jpg?auto=format&cs=tinysrgb&fit=crop&q=60&w=750",
+      "id": "21dd"
     }
   ]
 }

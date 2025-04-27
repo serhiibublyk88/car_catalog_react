@@ -1,5 +1,5 @@
 .item {
-  width: 280px;
+  width: 300px;
   background: #1f1f1f;
   border-radius: 8px;
   overflow: hidden;
@@ -45,6 +45,7 @@
 
   z-index: 2;
 }
+
 .iconButton {
   display: flex;
   align-items: center;
@@ -61,17 +62,16 @@
     transform 0.1s ease;
 }
 
-/* Стили для ссылки "Read more", чтобы она была как кнопка */
 .readMoreLink {
   display: inline-block;
   margin-top: 10px;
-  padding: 10px 16px;
-  background-color: #198754;
-  color: white;
   text-decoration: none;
+  font-size: 1rem;
+  color: white;
+  background-color: #198754;
+  padding: 10px 16px;
   border-radius: 4px;
   transition: background-color 0.3s ease;
-  font-size: 1rem;
 }
 
 .readMoreLink:hover {
